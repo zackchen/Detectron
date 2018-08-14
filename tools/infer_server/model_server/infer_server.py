@@ -1,13 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#
-# Copyright (c) 2017 Qihoo.com, Inc. All Rights Reserved
-#
 
 """
 @file infer_server.py.py
-@author: chenzhen (chenzhen@360.cn)
+@author: chenzhen (zack.m.chen@gmail.com)
 @date: 2018/8/14
 """
 import logging

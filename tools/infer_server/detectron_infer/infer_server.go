@@ -7,14 +7,14 @@ import (
   "google.golang.org/grpc"
 )
    
-func Run(echoEndpoint *string) error {
+func Run(endpoint *string) error {
   ctx := context.Background()
   ctx, cancel := context.WithCancel(ctx)
   defer cancel()
    
   mux := runtime.NewServeMux()
   opts := []grpc.DialOption{grpc.WithInsecure()}
-  err := RegisterDetectronServiceHandlerFromEndpoint(ctx, mux, *echoEndpoint, opts)
+  err := RegisterDetectronServiceHandlerFromEndpoint(ctx, mux, *endpoint, opts)
   if err != nil {
     return err
   }
