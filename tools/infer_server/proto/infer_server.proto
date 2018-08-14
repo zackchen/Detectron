@@ -1,0 +1,70 @@
+syntax = "proto3";
+//import "google/protobuf/wrappers.proto";
+
+message Point {
+    int32 x = 1;
+    int32 y = 2;
+};
+
+message Context {
+    map<string, string> user_data = 1;
+    map<string, string> option_params = 2;
+}
+
+message Classification {
+    string class = 1;
+    float confidence = 2;
+}
+
+message RequestData {
+    string base64 = 1;
+    bytes raw = 2;
+}
+
+message DetectRequest {
+    Context context = 1;
+    RequestData data = 2;
+}
+
+message BBox {
+    Point left_top = 1;
+    Point right_bottom = 2;
+    float confidence = 5;
+}
+
+message Mask {
+    repeated Point segms = 1;
+    float confidence = 2;
+}
+
+message KeyPoints {
+    repeated Point points = 1;
+    repeated bool visibility = 2;
+    float confidence = 3;
+}
+
+message Detection {
+    BBox bbox = 1;
+    Mask mask = 2;
+    KeyPoints keypoints = 3;
+    repeated Classification cls = 4;
+}
+
+message DetectResponse {
+    Context context = 1;
+    oneof err_no_oneof {
+        int32 err_no = 2;
+    }
+    oneof err_msg_oneof {
+        string err_msg = 3;
+    }
+    string request_id = 4;
+    repeated Detection detections = 5;
+}
+
+
+service DetectronServer {
+    rpc Detect (DetectRequest) returns (DetectResponse) {
+    }
+
+}
