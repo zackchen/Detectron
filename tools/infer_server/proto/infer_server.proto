@@ -1,6 +1,8 @@
 syntax = "proto3";
 //import "google/protobuf/wrappers.proto";
 
+package detectron.infer;
+
 message Point {
     int32 x = 1;
     int32 y = 2;
@@ -63,7 +65,7 @@ message DetectResponse {
 }
 
 
-service DetectronServer {
+service DetectronService {
     rpc Detect (DetectRequest) returns (DetectResponse) {
     }
 

@@ -1,0 +1,8 @@
+ type: google.api.Service
+ config_version: 3
+
+ http:
+   rules:
+   - selector: detectron.infer.DetectronService.Detect
+     post: /v1/detectron/detect
+     body: "*"
